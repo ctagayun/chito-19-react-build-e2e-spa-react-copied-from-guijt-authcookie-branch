@@ -1,0 +1,312 @@
+
+   - This  is implementation of:
+      https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/6feac58d-c6dc-40ae-afd9-6358f0bf8bc1/b27964d1-1cdb-40c2-a518-1421030ca4c8
+
+   - API: Creating a Database
+      - run - dotnet add package Microsoft.entityframeworkcore.sqlite
+        sqlitew is light and works on various platforms
+
+      - now in the API create a directory called "Data" and create the
+        following files:
+           HouseEntity.cs
+    
+      - Entities such as HouseEntity are used in a class called 
+        DBContext. Create another class called HouseDbContext.cs
+
+      - create another class called "SeedData" which will be used 
+        to populate the database
+
+      - before creating the database via "onModelCreating" in the
+        HouseDbContext and running dotnet migration, install:  
+
+          dotnet add package Microsoft.EntityFrameworkCore.Design
+
+        this will facilatate working with migrations.
+
+      - and then do - dotnet ef migrations add initial
+
+   - API: Adding Data Endpoints 
+     - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/6feac58d-c6dc-40ae-afd9-6358f0bf8bc1/923360fc-0172-4fda-9038-459c1f4e7db4
+     - register the HouseDbContext in the DI container   
+
+     - run the API = dot net run 
+
+     - do "localhost:4000/houses" to display list of houses
+     
+   - API: Separating Cncerns 
+       - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/6feac58d-c6dc-40ae-afd9-6358f0bf8bc1/c479f31f-c836-4eb1-85db-690e16165fbc
+
+       - create a record instead of a class. we will call it HouseDto
+
+       - register HouseRepository in the DI container
+       
+   - React: Consuming Endpoints, Hooks, Caching, and 
+     Formatting incoming Data
+       - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/6feac58d-c6dc-40ae-afd9-6358f0bf8bc1/c20bca4c-8627-4d86-ab9e-7d7e5e1c115a
+       - add CORS middle ware to program.cs 
+          //Allow api port 4000 to call port 3000 where the react app is running
+         app.UseCors(p => p.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+
+   - React Custom Hooks and useEffect   
+      https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/6feac58d-c6dc-40ae-afd9-6358f0bf8bc1/483e6ba7-d5fb-473b-a84a-c5f5b3e9f35a
+
+      - create a directory called "hooks" and Create  
+        HouseHooks.ts
+
+   - React Caching
+      - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/6feac58d-c6dc-40ae-afd9-6358f0bf8bc1/186797d5-0998-4f0f-be58-47b855a6e15e
+
+      - npm install axios@01 @tanstack/react-query@5
+
+      - react-query is 
+
+      - change useFetchHouses in HouseHook.ts to use useQuery
+
+      - useQuery relies on an object of type queryCliennt
+        go to main.tsx and 
+        import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+
+  Module 4 - Adding Navigation and Routing
+    - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8c582716-546d-4dbb-a88c-51541498ae9f/8f6e4491-e0e5-41e4-acfa-e16bc6d7b722
+    - nav is handled by the react
+    - Start with API - Add HouseDetailDTO
+
+   
+    - add HouseDetailDTO to Api DTO folder
+
+    Module 4 - Setup Routing (Use "rtg" to mark routing changes/additions)
+    -https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8c582716-546d-4dbb-a88c-51541498ae9f/b646b1f6-4c4d-4531-8095-bb9d0c56eb48
+
+     - to support client-side routing - npm install react-router-dom@6 
+
+    Module 4- React Details component (Use "detl)
+      - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8c582716-546d-4dbb-a88c-51541498ae9f/9e176161-3009-4fb0-8478-7e3ed666d2fc
+      - add useFetchHouse() to HouseHooks
+      - add HouseDetail.tsx
+
+    Module 4 - React Navigation - (Use "navclick)
+      - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8c582716-546d-4dbb-a88c-51541498ae9f/10f290ba-ceb4-47ea-ab2c-a45cfedd8c0c
+
+      - Modify HouseList
+
+  Module 5 -  Creating, Updating and Deleting Data
+     - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8c582716-546d-4dbb-a88c-51541498ae9f/10f290ba-ceb4-47ea-ab2c-a45cfedd8c0c
+
+     Module 5- API: Create, Edit, and Delete Endpoints
+        - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/fd8dc738-13ae-4cf9-814e-29788116273e
+
+        - Work on the API first
+
+    Module 5 - Database persistence
+       - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/4e83e69f-523e-43a9-8d9d-959856fa6061
+
+       - add the following methods to the House IRepository: Add, Update, Deleter
+
+    Module 5 - React useMutation
+       - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/d708696c-20aa-4003-b06f-60987671f887
+
+       - add useAddHouse in HouseHook.ts
+       - use mute to flag
+
+    Module 5- React Forms
+      -  https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/6ed34586-afbb-4771-b211-a82d3c3dd7cb
+      
+      - Create a HouseForm component 
+
+      - use frm to flag
+
+     Module 5: Reusing Components
+     - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/85833230-d06e-4234-947d-8397159d155e
+
+     - create HouseAdd.tsx in house folder
+     - use crud to flag
+
+     Module 5: API Validation and Displaying Validation error
+     - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/0d6e7b96-932f-46ba-a550-1d619c3b2f54
+     - display validation error: 
+        https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/253e7626-3174-40ca-9951-7f04d73280a2
+     - flag = vald
+
+     - server-side validation means validaton by the API
+     - client-side validation  means validation by client application
+     - ypu should always do server-validation
+
+     - use data annotaions on the DTO HouseDetailDTO
+
+     - https://4sh.nl/annotations - list of .netcore validation attributes
+
+     - building an API using minimal has no built in validation to enforce 
+       validation rules such as "required. But there is a way around it: 
+           dotnet add package minivalidation
+
+     - now go to Program.cs and enforce validation rule for address and country
+
+     - now display validation errors. 
+         - goto src --> types and create "problem.ts?"
+
+     - directly under /src folder add component "ValidationSummary"
+
+     Module 5 - Uploading Images
+     - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/d32eed30-599e-4646-b3d5-9d92cb16b1c7
+
+     - flag + upld
+
+     - modify HouseForm.tsx. Add the following HTML:
+          <div className="form-group mt-2">
+          <label htmlFor="image">Image</label>
+          <input
+            id="image"
+            type="file"
+            className="form-control"
+            onChange={onFileSelected}
+          />
+        </div>
+        <div className="mt-2">
+          <img src={houseState.photo}></img>
+        </div>
+
+    - create file toBase64.ts in folder /src
+
+  Module 6 - Working with Related Data
+    -https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/8df0ce24-cefa-421a-9111-2ab738544221/d32eed30-599e-4646-b3d5-9d92cb16b1c7
+
+    - Module 6 - API Adding a Bid Entity
+        https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/4f28ee7a-2200-4d8a-b6c1-fcc044126a0d/3dcd877b-3522-48f4-b85e-2573a9dfa9aa
+
+        - flag as bidder
+        - add BidEntity.cs and BidRepositoru classes in data/
+        - next modify the HouseDbContext and add Bidder dbSet of BidEntity
+        - add bid data to SeedData.cs
+
+        - next run a migration "dotnet ef migrations add bids" 
+          dotnet ef migrations remove
+        - dotnet ef database update
+
+    - Module 6 - API Add New Repository 
+        - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/4f28ee7a-2200-4d8a-b6c1-fcc044126a0d/98529f81-af77-4df7-96d0-ef624051260d
+
+    - Module 6 - API: Add Extra Endpoints
+        - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/4f28ee7a-2200-4d8a-b6c1-fcc044126a0d/4f34e6fd-3435-4a89-abc0-4f148be9dad9
+
+        - go to Program.cs 
+        
+    - Module 6 - React-Adding-Hooks 
+       - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/4f28ee7a-2200-4d8a-b6c1-fcc044126a0d/ab5210ee-02ac-4ec8-94f9-16160de1a564
+
+       - create a type "bid.ts that represents a Bid in /src/types
+       - next thing to do is to create a hook to support the bid endpoint. 
+         So in the hooks directory create BidHooks.ts
+
+    - Module 6 - Displaying and  Data in One Component 
+       - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/4f28ee7a-2200-4d8a-b6c1-fcc044126a0d/56c96f54-6f09-4687-ac2d-1a459236ff48
+
+       - create a file called Bids.tsx under /src/bids folder
+       - flag bidscomp
+        
+       - after creating the Bids.tsx component modify HouseDetail.tsx and put 
+         the Bids.tsx under the data.description table row
+
+       - TODO April 5, 2024
+          - add a logic to make sure the bid is higher than the previous Bid
+
+  Module 7- Deployment, Authentication and Authorization
+
+   Module 7: API and React Deployment
+      - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/c2709893-6776-4589-bc6c-699eeb71d6a5/f2de7518-23c4-4576-8877-2169ea14ab86
+      - Manually Deploying ReactWeb
+         - before deploying the ReactWeb do:
+               npm run build. 
+         -  After asuccessful build a "dist" folder is created under the root 
+            of the project:
+
+         - under /dist/assets you will find 
+             1. GloboLogo-CuZ7u1Sj - contains the application logo     
+             2. index-Dee1sRAh.css 
+             3. index-DQkLf5Ni.js - contains all minimized javascript for entire app
+
+      - Manually Deploying API 
+          - before deploying the API do a "dotnet publish"
+          - this will create a directory /api/bin/release/ne8.0/publish here you will find:
+              1. api.exe
+              2. api.dll
+            the application can be started by navigating to cd: 
+               C:\_AMyReactDev\chito-15-react-build-e2e-spa-react-api-react-deployment\API\bin\Release\net8.0
+                  then "dotnet api.dll"  
+                   or .\api.exe
+  
+   Module 7: Authentication the COOKIE approach (Solution 1: the cookie) :
+      - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/c2709893-6776-4589-bc6c-699eeb71d6a5/a98d4add-cc27-4356-bde1-b252cec75c72
+
+      - the api has login/logout support
+      - react displays login form and submit it to api again. api check the credentials.
+        If everything ok, the api (backend ) will take all user infrmation and encrypted 
+        with a key that's only known to the server backend and sends the encrypted data 
+        in a form of a cookie that is often called session cookie to the browser
+
+      - the browser can not read the cookie because it is cryptographilcally signed by 
+        the backend
+
+      - the cookie is stored in the browser. and as soon request is made to the same domain,
+        the cookie is sent along (only when same domain is used) since some of the 
+        endpoints require Authorization thats why andpoints and api have to be in the 
+        same application.
+
+      - other domains will never receive or access the cookie. 
+
+      - the key to decrypt the cookie is only know to the backend. so it knows who 
+        the user is. it can restrict/deny access when no valid cookie is present
+
+      - BUT how can the browser with our react applcation know who the user is?
+        Answer: thats another session endpoint from the react application. 
+        We can do another request to the backend for user data. It will require
+        the session cookie and now the user data can be returned in JSON form.
+
+      - COOL! But how do we cope with a cross-site request forgery attack (CSRF) - 
+        this is when a user that is using our react app is LURED to a malicious site
+        say www.malicious.com the session cookie in ReactWeb is still present. So
+        if www.malicious-com request to ReactWewb Api, the cookie will be sent 
+        along. So www.malicious.com can do things in the API on behalf of the user 
+        without the user knowing it. The Solution? 
+            SET THE COOKIE AS "SAME SITE COOKIE"
+        So the cookie will only be set to the same site. When the cookie is set to the 
+        same site a check is done if the sender and receiver match. So www.malicious.com
+        will not have a chance now because it is a different site.
+           
+   Module 7: Hosting the React applcation
+      - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/c2709893-6776-4589-bc6c-699eeb71d6a5/e405b0bb-51f8-4add-8058-8cf14e48326b
+      - switch to AuthCookie git branch
+      - modify API program.cs
+      - flag all changes to cookiehosting
+      - modify /src/config.ts of ReactWeb
+      - run "publish.ps" to run and copy ReactWeb build output to api\wwwroot folder
+        everytime we change something in ReactWeb. Open integrated terminal for ReactWeb and 
+        open "Windows Powershell Ise" and run publish.ps
+
+      - an alternative to copying RactWeb build to api/wwwroot is to 
+        use "Reverse proxying requests". It is out of scope study Guijt 
+        course: "Authentication and Authorization in React by Roland Guijt"
+
+   Module 7: Api: Implementing Cookie Auth in Api
+      -https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/c2709893-6776-4589-bc6c-699eeb71d6a5/5021002a-0cc6-410e-9f1d-0d92de2ac80d
+
+      - when you run the API in AuthCookie branch you will see a Login link 
+        the list of houses wont load
+
+      - flag as implCookie
+
+      - change Program.cs
+
+      - create AccountController.cs in api/controllers
+
+      - go to WebAppliationsHouseExtension.cs and Plug "Authorize" 
+        in the approppriate app.MapGet, appMapPost, AppMapDelete....
+
+   Module 7: React: Implementing Cookie Auth in React
+     - https://app.pluralsight.com/ilx/video-courses/fbbac3b2-0e56-464b-92f2-0b877f92f12c/c2709893-6776-4589-bc6c-699eeb71d6a5/85458f50-80c4-4cf8-8469-76ae8123cf43
+     - flag as implCookieReact
+     - to support authentication in React application in HouseHook and BidHooks
+       we have to instruct Axios to send along the cookie with each axios call.
+     - modify houseHook
+     - create UserHook.ts 
+     - create claims.ts in src/types
+     - now go to /src/main/app.tsx an add code to check if the user was fetched successfully
